@@ -123,7 +123,7 @@ const ResourceListWithProducts = () => {
           }}
         />
       </Card>
-      <ApplyRandomPrices selectedItems={selectedNodes} onUpdate={refetch} />
+      {/* <ApplyRandomPrices selectedItems={selectedNodes} onUpdate={refetch} /> */}
       <InputPrice selectedItems={selectedNodes} onUpdate={refetch} />
     </>
 

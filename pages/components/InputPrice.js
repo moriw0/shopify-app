@@ -17,8 +17,50 @@ const UPDATE_PRICE = gql`
   }
 `;
 
-function InputPrice() {
-  const [textFieldValue, setTextFieldValue] = useState('2.00');
+function InputPrice(props) {
+  const updatePrice = useMutation(UPDATE_PRICE);
+
+  const [hasResults, setHasResults] = useState(false);
+  const [error, setError] = useState();
+
+  const showError = error && (
+    <Banner status="critical">{error.message}</Banner>
+  );
+
+  const showToast = hasResults && (
+    <Toast
+      content="Successfully updated"
+      onDismiss={() => setHasResults(false)}
+    />
+  );
+
+  const handleClick = async () => {
+    for (const variantId in props.selectedItems) {
+      const price = textFieldValue;
+      const productVariableInput = {
+        id: props.selectedItems[variantId].variants.edges[0].node.id,
+        price: price
+      };
+
+      try {
+        await updatePrice({
+          variables: {
+            input: productVariableInput
+          }
+        });
+      } catch (e) {
+        setError(e)
+      }
+
+      try {
+        props.onUpdate()
+        setHasResults(true)
+      } catch (e) {
+        setError(e)
+      }
+    }
+  };
+  const [textFieldValue, setTextFieldValue] = useState('50');
 
   const handleTextFieldChange = useCallback(
     (value) => setTextFieldValue(value),
@@ -27,7 +69,7 @@ function InputPrice() {
 
   return (
     <Frame>
-      {/* {showToast} */}
+      {showToast}
       <Layout.Section>
         <TextField
           label="Price"
@@ -37,14 +79,15 @@ function InputPrice() {
           prefix="$"
           autoComplete="off"
         />
-        {/* {showError} */}
+        {showError}
       </Layout.Section>
+
       <Layout.Section>
         <Stack distribution={"center"}>
           <Button
             primary
-            textAlign={"center"}>
-            {/* onClick={() => handleClick()}  */}
+            textAlign={"center"}
+            onClick={() => handleClick()} >
             Change prices
           </Button>
         </Stack>
