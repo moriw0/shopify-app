@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Page, Layout, EmptyState } from "@shopify/polaris";
 import { ResourcePicker, TitleBar } from '@shopify/app-bridge-react';
 import ResourceListWithProducts from "./components/ResourceList";
+import InputPrice from "./components/InputPrice";
 import store from 'store-js';
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
@@ -50,7 +51,10 @@ const Index = () => {
       ) : (
         // Uses the new resource list that retrieves products by IDs
         <ResourceListWithProducts />
-      )}
+        )}
+        <Layout>
+          <InputPrice />
+        </Layout>
     </Page>
   )
 }
