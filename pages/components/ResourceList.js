@@ -5,6 +5,7 @@ import { Card, ResourceList, Stack, TextStyle, Thumbnail } from "@shopify/polari
 
 import gql from "graphql-tag";
 import ApplyRandomPrices from "./ApplyRandomPrices";
+import InputPrice from "./InputPrice";
 
 const GET_PRODUCTS_BY_ID = gql`
   query getProducts($ids: [ID!]!) {
@@ -123,6 +124,7 @@ const ResourceListWithProducts = () => {
         />
       </Card>
       <ApplyRandomPrices selectedItems={selectedNodes} onUpdate={refetch} />
+      <InputPrice selectedItems={selectedNodes} onUpdate={refetch} />
     </>
 
   );

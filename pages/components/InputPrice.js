@@ -1,5 +1,21 @@
 import React, { useState, useCallback } from "react";
-import { TextField, Layout, EmptyState, Button, Banner, Toast, Stack, Frame } from "@shopify/polaris";
+import gql from "graphql-tag";
+import { useMutation } from "@shopify/react-graphql";
+import { TextField, Layout, Button, Banner, Toast, Stack, Frame } from "@shopify/polaris";
+
+const UPDATE_PRICE = gql`
+  mutation productVariantUpdate($input: ProductVariantInput!) {
+    productVariantUpdate(input: $input) {
+      product {
+        title
+      }
+      productVariant {
+        id
+        price
+      }
+    }
+  }
+`;
 
 function InputPrice() {
   const [textFieldValue, setTextFieldValue] = useState('2.00');

@@ -52,7 +52,7 @@ const Index = () => {
         // Uses the new resource list that retrieves products by IDs
         <ResourceListWithProducts />
         )}
-        <InputPrice />
+        {/* <InputPrice /> */}
     </Page>
   )
 }
