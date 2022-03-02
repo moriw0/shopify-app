@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Page, Layout, EmptyState } from "@shopify/polaris";
+import { Page, Layout, EmptyState, Button, Banner, Toast, Stack, Frame } from "@shopify/polaris";
 import { ResourcePicker, TitleBar } from '@shopify/app-bridge-react';
 import ResourceListWithProducts from "./components/ResourceList";
 import InputPrice from "./components/InputPrice";
@@ -52,9 +52,7 @@ const Index = () => {
         // Uses the new resource list that retrieves products by IDs
         <ResourceListWithProducts />
         )}
-        <Layout>
-          <InputPrice />
-        </Layout>
+        <InputPrice />
     </Page>
   )
 }

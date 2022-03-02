@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { TextField } from "@shopify/polaris";
+import { TextField, Layout, EmptyState, Button, Banner, Toast, Stack, Frame } from "@shopify/polaris";
 
 function InputPrice() {
   const [textFieldValue, setTextFieldValue] = useState('2.00');
@@ -10,14 +10,30 @@ function InputPrice() {
   );
 
   return (
-    <TextField
-      label="Price"
-      type="number"
-      value={textFieldValue}
-      onChange={handleTextFieldChange}
-      prefix="$"
-      autoComplete="off"
-    />
+    <Frame>
+      {/* {showToast} */}
+      <Layout.Section>
+        <TextField
+          label="Price"
+          type="number"
+          value={textFieldValue}
+          onChange={handleTextFieldChange}
+          prefix="$"
+          autoComplete="off"
+        />
+        {/* {showError} */}
+      </Layout.Section>
+      <Layout.Section>
+        <Stack distribution={"center"}>
+          <Button
+            primary
+            textAlign={"center"}>
+            {/* onClick={() => handleClick()}  */}
+            Change prices
+          </Button>
+        </Stack>
+      </Layout.Section>
+    </Frame>
   );
 }
 
